@@ -47,3 +47,35 @@ while maintain:
     # Reset to one the variables
     maintain_game = 1
     maintain_home = 1
+
+    """
+    home loop of the game
+    """
+    while maintain_home:
+        for event in pg.event.get():
+            if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
+                maintain_home = 0
+                maintain_game = 0
+                maintain = 0
+                # Variable of choice ==> start of the game
+                choice = 0
+            elif event.type == KEYDOWN:
+                # launch level 1
+                if event.key == K_F1:
+                    maintain_home = 0
+                    choice = gc.la1
+                    # launch level 2
+                elif event.key == K_F2:
+                    maintain_home = 0
+                    choice = gc.la2
+    if choice != 0:
+        # loading the background image
+        background = pg.image.load(gc.background_picture).convert()
+
+        # Generating a level from a file
+        level = gl.Level(choice)
+        level.generate()
+        level.display(window)
+
+
+        

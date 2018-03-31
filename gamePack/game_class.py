@@ -59,3 +59,61 @@ class Level:
                     window.blit(arrival, (x,y))
                 number_case += 1
             number_line += 1
+
+class Persona:
+    """Class to create a character for each movement in the maze."""
+    def __init__(self, right, left, up, down, level):
+        # persona's sprite
+        self.right = pg.image.load(gc.mg_right).convert_alpha()
+        self.left = pg.image.load(gc.mg_left).convert_alpha()
+        self.up = pg.image.load(gc.mg_up).convert_alpha()
+        self.down = pg.image.load(gc.mg_down).convert_alpha()
+        # persona position in boxes and pixels
+        self.case_x = 0
+        self.case_y = 0
+        self.x = 0
+        self.y = 0
+        # Default direction
+        self.direction = self.right
+        # level in which the persona is located
+        self.level = level
+
+    def move(self, direction):
+        """Method for moving the persona"""
+        # Move to the right
+        if direction == 'right':
+            # Not to exceed the screen
+            if self.case_x < (gc.number_sprite-1):
+                # We check that the destination box is not a wall
+                if self.level.framework[self.case_y][self.case_x+1] != '#':
+                    # Moving a box
+                    self.case_x += 1
+                    # Calculation of the "real" position in pixels
+                    self.x = self.case_x * gc.sprite_size
+
+            # Image in the right direction
+            self.direction = self.right
+
+        # Move to the left
+        if direction == 'left':
+            if self.case_x > 0:
+                if self.level.framework[self.case_y][self.case_x-1] != '#':
+                    self.case_x -= 1
+                    self.x = self.case_x * gc.sprite_size
+            self.direction = self.left
+
+        # Move to up
+        if direction == 'up':
+            if self.case_y > 0:
+                if self.level.framework[self.case_y-1][self.case_x] != "#":
+                    self.case_y -= 1
+                    self.y = self.case_y * gc.sprite_size
+            self.direction = self.up
+
+        # Move to down
+        if direction == 'down':
+            if self.case_y < (gc.number_sprite -1):
+                if self.level.framework[self.case_y+1][self.case_x] != '#':
+                    self.case_y += 1
+                    self.y = self.case_y * gc.sprite_size
+            self.direction = self.down

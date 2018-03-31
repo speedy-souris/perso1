@@ -77,3 +77,37 @@ while maintain:
         level = gl.Level(choice)
         level.generate()
         level.display(window)
+
+
+        # Creating macGyver (persona)
+        mg = gl.Persona(gc.mg_right, gc.mg_left, gc.mg_up, gc.mg_down, level)
+
+    """
+    GAME LOOP
+    """
+    while maintain_game:
+        for event in pg.event.get():
+            # Close the window to quit
+            if event.type == QUIT:
+                maintain_game = 0
+                maintain = 0
+            # ESC key to return to the menu
+            elif event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    maintain_game = 0
+                    # Button for moving the persona
+                elif event.key == K_RIGHT:
+                    mg.move('right')
+                elif event.key == K_LEFT:
+                    mg.move('left')
+                elif event.key == K_UP:
+                    mg.move('up')
+                elif event.key == K_DOWN:
+                    mg.move('down')
+
+        window.blit(background,(0,0))
+        level.display(window)
+        pg.display.flip()
+
+        if level.framework[mg.case_y][mg.case_x] == "o":
+            maintain_game = 0

@@ -31,3 +31,19 @@ icon = pg.image.load(gc.window_icon)
 pg.display.set_icon(icon)
 # Title of the window
 pg.display.set_caption(gc.window_title)
+
+"""
+Main loop of the game
+"""
+maintain = 1
+while maintain:
+    # home menu display
+    menu = pg.image.load(gc.menu_picture).convert()
+    window.blit(menu,(0,0))
+
+    # Refresh the window
+    pg.display.flip()
+
+    # Reset to one the variables
+    maintain_game = 1
+    maintain_home = 1

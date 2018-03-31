@@ -17,6 +17,7 @@ from pygame.locals import *
 
 # local libraries
 from gamePack import game_constant as gc
+from gamePack import game_class as gl
 
 """ window management
     Adaptation of the window according to the size of sprites
@@ -76,6 +77,3 @@ while maintain:
         level = gl.Level(choice)
         level.generate()
         level.display(window)
-
-
-        

@@ -22,4 +22,6 @@ mg_left = "labyrinth/maze_persona/left.png"
 mg_up = "labyrinth/maze_persona/up.png"
 mg_down = "labyrinth/maze_persona/down.png"
 
-
+# list of game levels
+la1 = "labyrinth/maze_plan/labyrinth_format_1.txt"
+la2 = "labyrinth/maze_plan/labyrinth_format_2.txt"

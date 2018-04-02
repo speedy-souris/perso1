@@ -76,7 +76,25 @@ class Persona:
         # Default direction
         self.direction = self.up
 
-    
+    def ininitial_position(self, level):
+        """method of positioning the sprite on the sprite of start up
+        according to the level of the game"""
+        self.level = level
+
+        if level == "la1":
+            self.case_x = 0
+            self.case_y = 1
+            self.x = 0
+            self.y = 30
+        elif level == "la2":
+            self.case_x = 0
+            self.case_y = 14
+            self.x = 0
+            self.y = 420
+
+
+
+
     def move(self, direction):
         """Method for moving the persona"""
         # Move to the right

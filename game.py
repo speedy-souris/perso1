@@ -16,8 +16,10 @@ import pygame as pg
 from pygame.locals import *
 
 # local libraries
-from gamePack import game_constant as gc
-from gamePack import game_class as gl
+from gamePack.game_constant import *
+from gamePack.game_class import *
+#from gamePack import game_constant as gc
+#from gamePack import game_class as gl
 
 """ window management
     Adaptation of the window according to the size of sprites
@@ -25,13 +27,13 @@ from gamePack import game_class as gl
 pg.init()
 
 # Initiation of window
-window = pg.display.set_mode((gc.window_size, gc.window_size))
+window = pg.display.set_mode((window_size, window_size))
 
 # icon of the window
-icon = pg.image.load(gc.window_icon)
+icon = pg.image.load(window_icon)
 pg.display.set_icon(icon)
 # Title of the window
-pg.display.set_caption(gc.window_title)
+pg.display.set_caption(window_title)
 
 """
 Main loop of the game
@@ -39,7 +41,7 @@ Main loop of the game
 maintain = 1
 while maintain:
     # home menu display
-    menu = pg.image.load(gc.menu_picture).convert()
+    menu = pg.image.load(menu_picture).convert()
     window.blit(menu,(0,0))
 
     # Refresh the window
@@ -64,23 +66,22 @@ while maintain:
                 # launch level 1
                 if event.key == K_F1:
                     maintain_home = 0
-                    choice = gc.la1
+                    choice = la1
                     # launch level 2
                 elif event.key == K_F2:
                     maintain_home = 0
-                    choice = gc.la2
+                    choice = la2
     if choice != 0:
         # loading the background image
-        background = pg.image.load(gc.background_picture).convert()
+        background = pg.image.load(background_picture).convert()
 
         # Generating a level from a file
-        level = gl.Level(choice)
+        level = Level(choice)
         level.generate()
         level.display(window)
 
-
         # Creating macGyver (persona)
-        mg = gl.Persona(gc.mg_right, gc.mg_left, gc.mg_up, gc.mg_down, level)
+        mg = Persona(mg_right, mg_left, mg_up, mg_down, level)
 
     """
     GAME LOOP
@@ -95,7 +96,7 @@ while maintain:
             elif event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
                     maintain_game = 0
-                    # Button for moving the persona
+                # Button for moving the persona
                 elif event.key == K_RIGHT:
                     mg.move('right')
                 elif event.key == K_LEFT:
@@ -107,6 +108,7 @@ while maintain:
 
         window.blit(background,(0,0))
         level.display(window)
+        window.blit(mg.direction, (mg.x,mg.y))
         pg.display.flip()
 
         if level.framework[mg.case_y][mg.case_x] == "o":

@@ -6,7 +6,7 @@ import pygame as pg
 from pygame.locals import *
 
 # local library
-from gamePack import game_constant as gc
+from gamePack.game_constant import *
 
 class Level:
     """class to create a level"""
@@ -38,9 +38,9 @@ class Level:
         """Method for displaying the level according to
         the framework list returned by generate ()"""
         # Loading images (only the arrival one contains transparency)
-        wall = pg.image.load(gc.wall_picture).convert()
-        starting = pg.image.load(gc.starting_picture).convert()
-        arrival = pg.image.load(gc.arrival_picture).convert_alpha()
+        wall = pg.image.load(wall_picture).convert()
+        starting = pg.image.load(starting_picture).convert()
+        arrival = pg.image.load(arrival_picture).convert_alpha()
 
         # We go through the list of level
         number_line = 0
@@ -49,12 +49,13 @@ class Level:
             number_case = 0
             for sprite in line:
                 # The actual position in pixels is calculated
-                x = number_case * gc.sprite_size
-                y = number_line * gc.sprite_size
+                x = number_case * sprite_size
+                y = number_line * sprite_size
                 if sprite == '#':            # # = Wall
                     window.blit(wall, (x,y))
                 elif sprite == 'i':          # i = Starting
                     window.blit(starting, (x,y))
+
                 elif sprite == 'o':          # o = Arrival
                     window.blit(arrival, (x,y))
                 number_case += 1
@@ -64,32 +65,30 @@ class Persona:
     """Class to create a character for each movement in the maze."""
     def __init__(self, right, left, up, down, level):
         # persona's sprite
-        self.right = pg.image.load(gc.mg_right).convert_alpha()
-        self.left = pg.image.load(gc.mg_left).convert_alpha()
-        self.up = pg.image.load(gc.mg_up).convert_alpha()
-        self.down = pg.image.load(gc.mg_down).convert_alpha()
-        # persona position in boxes and pixels
-        self.case_x = 0
-        self.case_y = 0
-        self.x = 0
-        self.y = 0
-        # Default direction
-        self.direction = self.right
+        self.right = pg.image.load(mg_right).convert_alpha()
+        self.left = pg.image.load(mg_left).convert_alpha()
+        self.up = pg.image.load(mg_up).convert_alpha()
+        self.down = pg.image.load(mg_down).convert_alpha()
+
         # level in which the persona is located
         self.level = level
 
+        # Default direction
+        self.direction = self.up
+
+    
     def move(self, direction):
         """Method for moving the persona"""
         # Move to the right
         if direction == 'right':
             # Not to exceed the screen
-            if self.case_x < (gc.number_sprite-1):
+            if self.case_x < (number_sprite-1):
                 # We check that the destination box is not a wall
                 if self.level.framework[self.case_y][self.case_x+1] != '#':
                     # Moving a box
                     self.case_x += 1
                     # Calculation of the "real" position in pixels
-                    self.x = self.case_x * gc.sprite_size
+                    self.x = self.case_x * sprite_size
 
             # Image in the right direction
             self.direction = self.right
@@ -99,7 +98,7 @@ class Persona:
             if self.case_x > 0:
                 if self.level.framework[self.case_y][self.case_x-1] != '#':
                     self.case_x -= 1
-                    self.x = self.case_x * gc.sprite_size
+                    self.x = self.case_x * sprite_size
             self.direction = self.left
 
         # Move to up
@@ -107,13 +106,13 @@ class Persona:
             if self.case_y > 0:
                 if self.level.framework[self.case_y-1][self.case_x] != "#":
                     self.case_y -= 1
-                    self.y = self.case_y * gc.sprite_size
+                    self.y = self.case_y * sprite_size
             self.direction = self.up
 
         # Move to down
         if direction == 'down':
-            if self.case_y < (gc.number_sprite -1):
+            if self.case_y < (number_sprite -1):
                 if self.level.framework[self.case_y+1][self.case_x] != '#':
                     self.case_y += 1
-                    self.y = self.case_y * gc.sprite_size
+                    self.y = self.case_y * sprite_size
             self.direction = self.down

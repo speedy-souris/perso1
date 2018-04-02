@@ -79,7 +79,7 @@ while maintain:
         level = Level(choice)
         level.generate()
         level.display(window)
-        ininitial_position(choice)
+        
 
         # Creating macGyver (persona)
         mg = Persona(mg_right, mg_left, mg_up, mg_down, level)

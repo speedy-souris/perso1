@@ -73,27 +73,21 @@ class Persona:
         # level in which the persona is located
         self.level = level
 
+        #Position of the persona in boxes and pixels
+        #level 1
+        self.case_x = 0  # Colomn (sprite)
+        self.case_y = 1  # Line (sprite)
+        self.x = self.case_x * sprite_size       # Colomn (pixel)
+        self.y = self.case_y * sprite_size     # line (pixel)
+
+        #level 2
+        #self.case_x = 0
+        #self.case_y = 14
+        #self.x = 0
+        #self.y = 420
+
         # Default direction
         self.direction = self.up
-
-    def ininitial_position(self, level):
-        """method of positioning the sprite on the sprite of start up
-        according to the level of the game"""
-        self.level = level
-
-        if level == "la1":
-            self.case_x = 0
-            self.case_y = 1
-            self.x = 0
-            self.y = 30
-        elif level == "la2":
-            self.case_x = 0
-            self.case_y = 14
-            self.x = 0
-            self.y = 420
-
-
-
 
     def move(self, direction):
         """Method for moving the persona"""

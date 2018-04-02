@@ -13,7 +13,7 @@ window_icon = "labyrinth/maze_persona/macgyver.png"
 menu_picture = "labyrinth/maze_graphic/home.png"
 background_picture = "labyrinth/maze_graphic/background.png"
 wall_picture = "labyrinth/maze_graphic/wall.png"
-starting_picture = "labyrinth/maze_persona/macgyver.png"
+starting_picture = "labyrinth/maze_graphic/cave.png"
 arrival_picture = "labyrinth/maze_persona/guardian.png"
 
 # list of personas

@@ -16,10 +16,9 @@ import pygame as pg
 from pygame.locals import *
 
 # local libraries
-from gamePack.game_constant import *
-from gamePack.game_class import *
-#from gamePack import game_constant as gc
-#from gamePack import game_class as gl
+from gamePack import game_constant as constancy
+from gamePack import game_class as shape
+
 
 """ window management
     Adaptation of the window according to the size of sprites
@@ -27,13 +26,13 @@ from gamePack.game_class import *
 pg.init()
 
 # Initiation of window
-window = pg.display.set_mode((window_size, window_size))
+window = pg.display.set_mode((constancy.window_size, constancy.window_size))
 
 # icon of the window
-icon = pg.image.load(window_icon)
+icon = pg.image.load(constancy.window_icon)
 pg.display.set_icon(icon)
 # Title of the window
-pg.display.set_caption(window_title)
+pg.display.set_caption(constancy.window_title)
 
 """
 Main loop of the game
@@ -41,7 +40,7 @@ Main loop of the game
 maintain = 1
 while maintain:
     # home menu display
-    menu = pg.image.load(menu_picture).convert()
+    menu = pg.image.load(constancy.menu_picture).convert()
     window.blit(menu,(0,0))
 
     # Refresh the window
@@ -66,23 +65,24 @@ while maintain:
                 # launch level 1
                 if event.key == K_F1:
                     maintain_home = 0
-                    choice = la1
+                    choice = constancy.la1
                     # launch level 2
                 elif event.key == K_F2:
                     maintain_home = 0
-                    choice = la2
+                    choice = constancy.la2
     if choice != 0:
         # loading the background image
-        background = pg.image.load(background_picture).convert()
+        background = pg.image.load(constancy.background_picture).convert()
 
         # Generating a level from a file
-        level = Level(choice)
+        level = shape.Level(choice)
         level.generate()
         level.display(window)
-        
+
 
         # Creating macGyver (persona)
-        mg = Persona(mg_right, mg_left, mg_up, mg_down, level)
+        mg = shape.Persona(constancy.mg_right, constancy.mg_left,
+            constancy.mg_up, constancy.mg_down, level)
 
     """
     GAME LOOP
@@ -109,7 +109,7 @@ while maintain:
 
         window.blit(background,(0,0))
         level.display(window)
-        window.blit(mg.direction, (mg.x,mg.y))
+        window.blit(mg.direction,(mg.x,mg.y))
         pg.display.flip()
 
         if level.framework[mg.case_y][mg.case_x] == "o":

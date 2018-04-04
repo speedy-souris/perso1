@@ -77,21 +77,27 @@ class Persona:
         self.down = pg.image.load(constancy.mg_down).convert_alpha()
 
         #Position of the persona in boxes and pixels
-        self.case_x = initial_x_persona(Level.initial_x)
-        self.case_y = initial_y_persona(Level.initial_y)
-        self.x = self.case_x * constant.sprite_size
-        self.y = self.case_y * constant.sprite_size
+        self.case_x = self.initial_x_persona
+        self.case_y = self.initial_y_persona
+        self.x = self.case_x * constancy.sprite_size
+        self.y = self.case_y * constancy.sprite_size
 
         # Default direction
         self.direction = self.up
         # level in which the persona is located
         self.level = level
 
-    def initial_x_persona(self, x):
-        self.x
+    @property
+    def initial_x_persona(self):
+        """method to display the initial column of the sprty 'macgyver'
+        at the start of the game level"""
+        return Level.initial_x
+    @property
+    def initial_y_persona(self):
+        """method to display the initial line of the sprty 'macgyver'
+        at the start of the game level"""
+        return Level.initial_y
 
-    def initial_y_persona(self, y):
-        self.y
 
 
     def move(self, direction):

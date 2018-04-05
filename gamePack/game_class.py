@@ -68,7 +68,7 @@ class Level:
             number_line += 1
 
 class Persona:
-    """Class to create a character for each movement in the maze."""
+    """Class to create a sprite for each movement in the labyrinth."""
     def __init__(self, right, left, up, down, level):
         # persona's sprite
         self.right = pg.image.load(constancy.mg_right).convert_alpha()
@@ -139,3 +139,12 @@ class Persona:
                     self.case_y += 1
                     self.y = self.case_y * constancy.sprite_size
             self.direction = self.down
+
+class Utensil:
+    """ Creation of utensils to help 'macGyver' escape from the labyrinth"""
+    def __init__(self, backpack, phial, needle, rod):
+        # utensil's sprite
+        self.backpack = pg.image.load(constancy.backpack).convert_alpha()
+        self.phial = pg.image.load(constancy.phial).convert_alpha()
+        self.needle = pg.image.load(constancy.needle).convert_alpha()
+        self.rod = pg.image.load(constancy.rod).convert_alpha()

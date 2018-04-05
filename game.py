@@ -10,6 +10,8 @@ modules:
 Images (labyrinth / personas / objects)
 file (s) 'TXT' for labyrinth strategy
 """
+# internanl modules
+import random as rm
 
 # externel modules
 import pygame as pg

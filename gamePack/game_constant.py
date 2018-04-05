@@ -22,6 +22,12 @@ mg_left = "labyrinth/persona/left.png"
 mg_up = "labyrinth/persona/up.png"
 mg_down = "labyrinth/persona/down.png"
 
+# list of utensils
+phial = "labyrinth/utensils/ether.png"
+needle = "labyrinth/utensils/needle.png"
+rod = "labyrinth/utensils/rod.png"
+backpack = "labyrinth/utensils/backpack.png"
+
 # list of game levels
 la1 = "labyrinth/matrix/labyrinth_format_1.txt"
 la2 = "labyrinth/matrix/labyrinth_format_2.txt"

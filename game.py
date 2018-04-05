@@ -26,7 +26,7 @@ from gamePack import game_class as shape
 pg.init()
 
 # Initiation of window
-window = pg.display.set_mode((constancy.window_size, constancy.window_size))
+window = pg.display.set_mode((500, 500))
 
 # icon of the window
 icon = pg.image.load(constancy.window_icon)

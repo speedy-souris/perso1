@@ -13,6 +13,9 @@ class Level:
     # initialization of the persona at the start of the game
     initial_x = 0
     initial_y = 0
+    # Initialization Level number
+    level_number = 0
+
 
     def __init__(self, level_file):
         self.level_file = level_file
@@ -61,6 +64,11 @@ class Level:
                     Level.initial_x = number_case
                     Level.initial_y = number_line
                     window.blit(starting, (x,y))
+                    if y == 30:
+                        Level.level_number = 1
+                    elif y == 420:
+                        Level.level_number = 2
+
 
                 elif sprite == 'o':          # o = Arrival
                     window.blit(arrival, (x,y))

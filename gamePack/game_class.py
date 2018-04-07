@@ -77,8 +77,8 @@ class Persona:
         self.down = pg.image.load(constancy.mg_down).convert_alpha()
 
         #Position of the persona in boxes and pixels
-        self.case_x = self.initial_x_persona
-        self.case_y = self.initial_y_persona
+        self.case_x = Level.initial_x
+        self.case_y = Level.initial_y
         self.x = self.case_x * constancy.sprite_size
         self.y = self.case_y * constancy.sprite_size
 
@@ -86,18 +86,6 @@ class Persona:
         self.direction = self.up
         # level in which the persona is located
         self.level = level
-
-    @property
-    def initial_x_persona(self):
-        """method to display the initial column of the sprty 'macgyver'
-        at the start of the game level"""
-        return Level.initial_x
-    @property
-    def initial_y_persona(self):
-        """method to display the initial line of the sprty 'macgyver'
-        at the start of the game level"""
-        return Level.initial_y
-
 
 
     def move(self, direction):
@@ -139,12 +127,3 @@ class Persona:
                     self.case_y += 1
                     self.y = self.case_y * constancy.sprite_size
             self.direction = self.down
-
-class Utensil:
-    """ Creation of utensils to help 'macGyver' escape from the labyrinth"""
-    def __init__(self, backpack, phial, needle, rod):
-        # utensil's sprite
-        self.backpack = pg.image.load(constancy.backpack).convert_alpha()
-        self.phial = pg.image.load(constancy.phial).convert_alpha()
-        self.needle = pg.image.load(constancy.needle).convert_alpha()
-        self.rod = pg.image.load(constancy.rod).convert_alpha()

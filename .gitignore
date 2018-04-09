@@ -1,0 +1,8 @@
+env/
+gamePack/__init__.pyc
+gamePack/*.pyc
+gamePack/__pycache__
+
+
+
+

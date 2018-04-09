@@ -10,8 +10,6 @@ modules:
 Images (labyrinth / personas / objects)
 file (s) 'TXT' for labyrinth strategy
 """
-# internanl modules
-import random as rm
 
 # externel modules
 import pygame as pg
@@ -20,14 +18,14 @@ from pygame.locals import *
 # local libraries
 from gamePack import game_constant as constancy
 from gamePack import game_class as shape
-
+from gamePack import game_function as functionality
 
 """ window management
     Adaptation of the window according to the size of sprites
 """
 pg.init()
 
-# Initiation of window
+# Initialization of window
 window = pg.display.set_mode((500, 500))
 
 # icon of the window
@@ -35,6 +33,11 @@ icon = pg.image.load(constancy.window_icon)
 pg.display.set_icon(icon)
 # Title of the window
 pg.display.set_caption(constancy.window_title)
+
+# Initialization utensils of game
+phial = pg.image.load(constancy.phial).convert_alpha()
+needle = pg.image.load(constancy.needle).convert_alpha()
+rod = pg.image.load(constancy.rod).convert_alpha()
 
 """
 Main loop of the game
@@ -109,10 +112,14 @@ while maintain:
                 elif event.key == K_DOWN:
                     mg.move('down')
 
+        
         window.blit(background,(0,0))
+        window.blit(phial, (functionality.random1_position_x1(),
+            functionality.random1_position_y1()))
         level.display(window)
         window.blit(mg.direction,(mg.x,mg.y))
         pg.display.flip()
-
+        
+        
         if level.framework[mg.case_y][mg.case_x] == "o":
             maintain_game = 0

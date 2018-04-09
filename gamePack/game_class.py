@@ -1,10 +1,6 @@
 """
 MacGyver's Labyrinth Game Class
 """
-
-#internal modules
-import random as rm
-
 # external libraries
 import pygame as pg
 from pygame.locals import *
@@ -19,7 +15,21 @@ class Level:
     initial_y = 0
     # Initialization Level number
     level_number = 0
-
+    
+    # set the random position of the 3 utensils in level 1 
+    fix_x1_1 = 'False'
+    fix_x2_1 = 'False'
+    fix_x3_1 = 'False'
+    fix_y1_1 = 'False'
+    fix_y2_1 = 'False'
+    fix_y3_1 = 'False'
+    # set the random position of the 3 utensils in level 2
+    fix_x1_2 = 'False'
+    fix_x2_2 = 'False'
+    fix_x3_2 = 'False'
+    fix_y1_2 = 'False'
+    fix_y2_2 = 'False'
+    fix_y3_2 = 'False'
 
     def __init__(self, level_file):
         self.level_file = level_file
@@ -48,12 +58,11 @@ class Level:
     def display(self, window):
         """Method for displaying the level according to
         the framework list returned by generate ()"""
+
         # Loading images (only the arrival one contains transparency)
         wall = pg.image.load(constancy.wall_picture).convert()
         starting = pg.image.load(constancy.starting_picture).convert()
         arrival = pg.image.load(constancy.arrival_picture).convert_alpha()
-
-        phial = pg.image.load(constancy.phial).convert_alpha()
 
         # We go through the list of level
         number_line = 0
@@ -74,16 +83,13 @@ class Level:
                         Level.level_number = 1
                     elif y == 420:
                         Level.level_number = 2
-
                 elif sprite == 'o':          # o = Arrival
                     window.blit(arrival, (x,y))
                 number_case += 1
             number_line += 1
-        if Level.level_number == 1:
-            position_x_item1 = [4*30,3*30,3*30,11*30,4*30,0*30,11*30,12*30,13*30]
-            position_y_item1 = [1*30,2*30,3*30,4*30,9*30,11*30,4*30,13*30,13*30]
-            window.blit(
-                phial, (rm.choice(position_x_item1),30))
+        
+        
+
 
 class Persona:
     """Class to create a sprite for each movement in the labyrinth."""

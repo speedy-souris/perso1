@@ -15,25 +15,12 @@ class Level:
     initial_y = 0
     # Initialization Level number
     level_number = 0
-    
-    # set the random position of the 3 utensils in level 1 
-    fix_x1_1 = 'False'
-    fix_x2_1 = 'False'
-    fix_x3_1 = 'False'
-    fix_y1_1 = 'False'
-    fix_y2_1 = 'False'
-    fix_y3_1 = 'False'
-    # set the random position of the 3 utensils in level 2
-    fix_x1_2 = 'False'
-    fix_x2_2 = 'False'
-    fix_x3_2 = 'False'
-    fix_y1_2 = 'False'
-    fix_y2_2 = 'False'
-    fix_y3_2 = 'False'
+
 
     def __init__(self, level_file):
         self.level_file = level_file
-        self.framework = 0
+        self.framework = 0 # framework of labyrinth
+        self.item = 0 # object, utensil of the game
 
     def generate(self):
         """Method for generating the level based on the file.
@@ -41,17 +28,28 @@ class Level:
         # file opening
         with open(self.level_file, "r") as level_file:
             framework_level = []
+            item_level = []
             # course of each line of the file
             for line in level_file:
                 line_level = []
+                line_item =[]
                 # We go through the sprites (letters) contained in the file
                 for sprite in line:
                     # We ignore the end of line "\ n"
                     if sprite != '\n':
                         # We add the sprite to the list of the line
                         line_level.append(sprite)
-                #Add the line to the level list
+                        if sprite == '_':
+                            """ We add the sprite '_' to the liste of the line
+                            empty labyrinth to position the items"""
+                            line_item.append(sprite)
+                # Add the line to the item list
+                item_level.append(line_item)
+                # Add the line to the level list
                 framework_level.append(line_level)
+
+            # We safeguard this item
+            self.item = item_level
             # We safeguard this framework
             self.framework = framework_level
 
@@ -87,8 +85,8 @@ class Level:
                     window.blit(arrival, (x,y))
                 number_case += 1
             number_line += 1
-        
-        
+
+
 
 
 class Persona:

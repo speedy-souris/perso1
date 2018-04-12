@@ -1,12 +1,14 @@
 """
 MacGyver's Labyrinth Game Class
 """
+# Internal libraries
+import random as rm
 # external libraries
 import pygame as pg
 from pygame.locals import *
-
-# local library
+# local libraries
 from gamePack import game_constant as constancy
+from gamePack import game_function as functionality
 
 class Level:
     """class to create a level"""
@@ -20,7 +22,7 @@ class Level:
     def __init__(self, level_file):
         self.level_file = level_file
         self.framework = 0 # framework of labyrinth
-        self.item = 0 # object, utensil of the game
+
 
     def generate(self):
         """Method for generating the level based on the file.
@@ -39,19 +41,14 @@ class Level:
                     if sprite != '\n':
                         # We add the sprite to the list of the line
                         line_level.append(sprite)
-                        if sprite == '_':
-                            """ We add the sprite '_' to the liste of the line
-                            empty labyrinth to position the items"""
-                            line_item.append(sprite)
-                # Add the line to the item list
-                item_level.append(line_item)
                 # Add the line to the level list
                 framework_level.append(line_level)
 
-            # We safeguard this item
-            self.item = item_level
             # We safeguard this framework
             self.framework = framework_level
+            functionality.random_position_phial(self.framework)
+            functionality.random_position_needle(self.framework)
+            functionality.random_position_rod(self.framework)
 
     def display(self, window):
         """Method for displaying the level according to
@@ -61,6 +58,10 @@ class Level:
         wall = pg.image.load(constancy.wall_picture).convert()
         starting = pg.image.load(constancy.starting_picture).convert()
         arrival = pg.image.load(constancy.arrival_picture).convert_alpha()
+        # Initialization utensils of game
+        phial = pg.image.load(constancy.phial).convert_alpha()
+        needle = pg.image.load(constancy.needle).convert_alpha()
+        rod = pg.image.load(constancy.rod).convert_alpha()
 
         # We go through the list of level
         number_line = 0
@@ -83,8 +84,15 @@ class Level:
                         Level.level_number = 2
                 elif sprite == 'o':          # o = Arrival
                     window.blit(arrival, (x,y))
+                elif sprite == 'p':          # p = phial
+                    window.blit(phial, (x,y))
+                elif sprite == 'l':          # l = needle
+                    window.blit(needle, (x,y))
+                elif sprite == 'r':          # r = rod
+                    window.blit(rod, (x,y))
                 number_case += 1
             number_line += 1
+
 
 
 

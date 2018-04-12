@@ -1,30 +1,40 @@
 """
-set the random position of the 3 utensils in level 1 and level 2
+define the random position of the 3 elements in each level of the game
 """
-import random as rm
+# internal import modules
+from random import *
 
-from gamePack.game_class import Level
 
 
-def random1_position_x1():
-    if Level.level_number == 1 and not Level.fix_x1_1:
-        x = rm.choice([120,90,90,330,120,0,330,360,390])
-    Level.fix_x1_1 = 'True'
-    return x
+def random_position_phial(item):
+    """random positioning method for phial"""
+    x = 0
+    y = 0
+    while(item[x][y]!= '_'):
+        x = randint(0,14)
+        y = randint(0,14)
 
-def random1_position_y1():
-    if Level.level_number == 1 and not Level.fix_y1_1:
-        y = rm.choice([30,60,90,120,270,330,330,390,390])
-    Level.fix_y1_1 = 'True'
-    return y
-"""
-def random1_position_x2():
-    return rm.choice([0,0,0,210,180,210,240,360])
-def random1_position_y2():
-    return rm.choice([150,180,210,210,330,330,330,30])
+    item[x][y] = 'p'
+    return item
 
-def random1_position_x3():
-    return rm.choice([120,60,90,120,210,240,300,330])
-def random1_position_y3():
-    return rm.choice([150,390,390,390,120,120,240,240])
-"""
+def random_position_needle(item):
+    """random positioning method for needle"""
+    x = 0
+    y = 0
+    while(item[x][y]!= '_'):
+        x = randint(0,14)
+        y = randint(0,14)
+
+    item[x][y] = 'l'
+    return item
+
+def random_position_rod(item):
+    """random positioning method for rod"""
+    x = 0
+    y = 0
+    while(item[x][y]!= '_'):
+        x = randint(0,14)
+        y = randint(0,14)
+
+    item[x][y] = 'r'
+    return item

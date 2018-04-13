@@ -132,16 +132,16 @@ while maintain:
         """
         if level.framework[mg.case_y][mg.case_x] == 'p': # phial recovery
             window.blit(phial, (195,460))
-            functionality.delete_phial(level.framework)
+            functionality.delete(level.framework, 'p')
 
         if level.framework[mg.case_y][mg.case_x] == 'l': # needle recovery
             window.blit(needle, (230,460))
-            functionality.delete_needle(level.framework)
+            functionality.delete(level.framework, 'l')
 
 
         if level.framework[mg.case_y][mg.case_x] == 'r': # rod recovery
             window.blit(rod, (265,460))
-            functionality.delete_rod(level.framework)
+            functionality.delete(level.framework, 'r')
 
         if level.framework[mg.case_y][mg.case_x] == "o":
             if shape.Level.backpack == 3:

@@ -46,9 +46,9 @@ class Level:
 
             # We safeguard this framework
             self.framework = framework_level
-            functionality.random_position_phial(self.framework)
-            functionality.random_position_needle(self.framework)
-            functionality.random_position_rod(self.framework)
+            functionality.random_position(self.framework, 'p')
+            functionality.random_position(self.framework, 'l')
+            functionality.random_position(self.framework, 'r')
 
     def display(self, window):
         """Method for displaying the level according to

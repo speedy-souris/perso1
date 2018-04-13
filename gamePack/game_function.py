@@ -10,74 +10,26 @@ from gamePack import game_constant as constancy
 """
 Item Display Method
 """
-def random_position_phial(item):
-    """random positioning method for phial"""
+def random_position(item,character):
+    """random positioning method for item"""
     x = 0
     y = 0
     while(item[x][y]!= '_'):
         x = randint(0,14)
         y = randint(0,14)
 
-    item[x][y] = 'p'
-    return item
-
-def random_position_needle(item):
-    """random positioning method for needle"""
-    x = 0
-    y = 0
-    while(item[x][y]!= '_'):
-        x = randint(0,14)
-        y = randint(0,14)
-
-    item[x][y] = 'l'
-    return item
-
-def random_position_rod(item):
-    """random positioning method for rod"""
-    x = 0
-    y = 0
-    while(item[x][y]!= '_'):
-        x = randint(0,14)
-        y = randint(0,14)
-
-    item[x][y] = 'r'
+    item[x][y] = character
     return item
 
 """
 Item removal method
 """
-def delete_phial(item):
-    """method of removing phial"""
+def delete(item,character):
+    """method of removing item"""
     from gamePack.game_class import Level
     x = 0
     y = 0
-    while(item[x][y]!= 'p'):
-        x = randint(0,14)
-        y = randint(0,14)
-
-    item[x][y] = '_'
-    Level.backpack += 1 # Add item found
-    return item
-
-def delete_needle(item):
-    """method of removing needle"""
-    from gamePack.game_class import Level
-    x = 0
-    y = 0
-    while(item[x][y]!= 'l'):
-        x = randint(0,14)
-        y = randint(0,14)
-
-    item[x][y] = '_'
-    Level.backpack += 1 # Add item found
-    return item
-
-def delete_rod(item):
-    """method of removing rod"""
-    from gamePack.game_class import Level
-    x = 0
-    y = 0
-    while(item[x][y]!= 'r'):
+    while(item[x][y]!= character):
         x = randint(0,14)
         y = randint(0,14)
 

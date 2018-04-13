@@ -1,8 +1,6 @@
 """
 MacGyver's Labyrinth Game Class
 """
-# Internal libraries
-import random as rm
 # external libraries
 import pygame as pg
 from pygame.locals import *
@@ -17,6 +15,8 @@ class Level:
     initial_y = 0
     # Initialization Level number
     level_number = 0
+    #items to recover
+    backpack = 0
 
 
     def __init__(self, level_file):

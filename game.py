@@ -18,7 +18,7 @@ from pygame.locals import *
 # local libraries
 from gamePack import game_constant as constancy
 from gamePack import game_class as shape
-#from gamePack import game_function as functionality
+from gamePack import game_function as functionality
 
 """ window management
     Adaptation of the window according to the size of sprites
@@ -26,7 +26,7 @@ from gamePack import game_class as shape
 pg.init()
 
 # Initialization of window
-window = pg.display.set_mode((500, 500))
+window = pg.display.set_mode((constancy.window_size, 500))
 
 # icon of the window
 icon = pg.image.load(constancy.window_icon)
@@ -71,14 +71,22 @@ while maintain:
                     maintain_home = 0
                     choice = constancy.la2
     if choice != 0:
+
         # loading the background image
         background = pg.image.load(constancy.background_picture).convert()
+        # loading the inventory part image (backpack, phial, needle, rod...)
+        death = pg.image.load(constancy.death_picture).convert()
+        empty =pg.image.load(constancy.empty_picture).convert()
+        inventory = pg.image.load(constancy.inventory_picture).convert_alpha()
+        backpack = pg.image.load(constancy.backpack).convert_alpha()
+        phial = pg.image.load(constancy.phial).convert_alpha()
+        needle = pg.image.load(constancy.needle).convert_alpha()
+        rod = pg.image.load(constancy.rod).convert_alpha()
 
         # Generating a level from a file
         level = shape.Level(choice)
         level.generate()
         level.display(window)
-
 
         # Creating macGyver (persona)
         mg = shape.Persona(constancy.mg_right, constancy.mg_left,
@@ -97,6 +105,10 @@ while maintain:
             elif event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
                     maintain_game = 0
+                # q key to quit the game after the death of persona 'MacGyver'
+                elif event.key == K_q:
+                    maintain_game = 0
+                    maintain = 0
                 # Button for moving the persona
                 elif event.key == K_RIGHT:
                     mg.move('right')
@@ -108,11 +120,36 @@ while maintain:
                     mg.move('down')
 
 
+        window.blit(inventory, (0,450))
         window.blit(background,(0,0))
+        window.blit(backpack, (160,460))
         level.display(window)
         window.blit(mg.direction,(mg.x,mg.y))
         pg.display.flip()
 
+        """
+        Item Recovery
+        """
+        if level.framework[mg.case_y][mg.case_x] == 'p': # phial recovery
+            window.blit(phial, (195,460))
+            functionality.delete_phial(level.framework)
+
+        if level.framework[mg.case_y][mg.case_x] == 'l': # needle recovery
+            window.blit(needle, (230,460))
+            functionality.delete_needle(level.framework)
+
+
+        if level.framework[mg.case_y][mg.case_x] == 'r': # rod recovery
+            window.blit(rod, (265,460))
+            functionality.delete_rod(level.framework)
 
         if level.framework[mg.case_y][mg.case_x] == "o":
-            maintain_game = 0
+            if shape.Level.backpack == 3:
+                window.blit(empty, (195,460))
+                window.blit(empty, (230,460))
+                window.blit(empty, (265,460))
+                shape.Level.backpack = 0
+                maintain_game = 0
+            else:
+                shape.Level.backpack < 3
+                window.blit(death, (0,450))

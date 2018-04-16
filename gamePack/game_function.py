@@ -12,8 +12,8 @@ Item Display Method
 """
 def random_position(item,character):
     """random positioning method for item"""
-    x = 0
-    y = 0
+    x = randint(0,14)
+    y = randint(0,14)
     while(item[x][y]!= '_'):
         x = randint(0,14)
         y = randint(0,14)

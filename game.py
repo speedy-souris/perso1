@@ -76,7 +76,7 @@ while maintain:
         background = pg.image.load(constancy.background_picture).convert()
         # loading the inventory part image (backpack, phial, needle, rod...)
         death = pg.image.load(constancy.death_picture).convert()
-        empty =pg.image.load(constancy.empty_picture).convert()
+        empty = pg.image.load(constancy.empty_picture).convert()
         inventory = pg.image.load(constancy.inventory_picture).convert_alpha()
         backpack = pg.image.load(constancy.backpack).convert_alpha()
         phial = pg.image.load(constancy.phial).convert_alpha()

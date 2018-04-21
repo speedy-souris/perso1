@@ -150,5 +150,4 @@ while maintain:
                 shape.Level.backpack = 0
                 maintain_game = 0
             else:
-                shape.Level.backpack < 3
                 window.blit(death, (0, 450))

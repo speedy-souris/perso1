@@ -6,17 +6,19 @@ from random import *
 # Local import modules
 from gamePack import game_constant as constancy
 
-
 """
 Item Display Method
 """
-def random_position(item,character):
+
+
+def random_position(item, character):
     """random positioning method for item"""
-    x = randint(0,14)
-    y = randint(0,14)
-    while(item[x][y]!= '_'):
-        x = randint(0,14)
-        y = randint(0,14)
+
+    x = randint(0, 14)
+    y = randint(0, 14)
+    while(item[x][y] != '_'):
+        x = randint(0, 14)
+        y = randint(0, 14)
 
     item[x][y] = character
     return item
@@ -24,15 +26,17 @@ def random_position(item,character):
 """
 Item removal method
 """
-def delete(item,character):
+
+
+def delete(item, character):
     """method of removing item"""
     from gamePack.game_class import Level
     x = 0
     y = 0
-    while(item[x][y]!= character):
-        x = randint(0,14)
-        y = randint(0,14)
+    while(item[x][y] != character):
+        x = randint(0, 14)
+        y = randint(0, 14)
 
     item[x][y] = '_'
-    Level.backpack += 1 # Add item found
+    Level.backpack += 1  # Add item found
     return item

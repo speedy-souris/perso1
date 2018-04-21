@@ -4,6 +4,10 @@ gamePack/*.pyc
 gamePack/__pycache__
 *.odt
 *.pdf
+*.zip
+*.ppt
+*.pps
+.~*.*
 .gitignore
 
 

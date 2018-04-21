@@ -8,6 +8,7 @@ from pygame.locals import *
 from gamePack import game_constant as constancy
 from gamePack import game_function as functionality
 
+
 class Level:
     """class to create a level"""
     # initialization of the persona at the start of the game
@@ -15,14 +16,12 @@ class Level:
     initial_y = 0
     # Initialization Level number
     level_number = 0
-    #items to recover
+    # items to recover
     backpack = 0
-
 
     def __init__(self, level_file):
         self.level_file = level_file
-        self.framework = 0 # framework of labyrinth
-
+        self.framework = 0  # framework of labyrinth
 
     def generate(self):
         """Method for generating the level based on the file.
@@ -34,7 +33,7 @@ class Level:
             # course of each line of the file
             for line in level_file:
                 line_level = []
-                line_item =[]
+                line_item = []
                 # We go through the sprites (letters) contained in the file
                 for sprite in line:
                     # We ignore the end of line "\ n"
@@ -73,28 +72,25 @@ class Level:
                 x = number_case * constancy.sprite_size
                 y = number_line * constancy.sprite_size
                 if sprite == '#':            # # = Wall
-                    window.blit(wall, (x,y))
+                    window.blit(wall, (x, y))
                 elif sprite == 'i':          # i = Starting
                     Level.initial_x = number_case
                     Level.initial_y = number_line
-                    window.blit(starting, (x,y))
+                    window.blit(starting, (x, y))
                     if y == 30:
                         Level.level_number = 1
                     elif y == 420:
                         Level.level_number = 2
                 elif sprite == 'o':          # o = Arrival
-                    window.blit(arrival, (x,y))
+                    window.blit(arrival, (x, y))
                 elif sprite == 'p':          # p = phial
-                    window.blit(phial, (x,y))
+                    window.blit(phial, (x, y))
                 elif sprite == 'l':          # l = needle
-                    window.blit(needle, (x,y))
+                    window.blit(needle, (x, y))
                 elif sprite == 'r':          # r = rod
-                    window.blit(rod, (x,y))
+                    window.blit(rod, (x, y))
                 number_case += 1
             number_line += 1
-
-
-
 
 
 class Persona:
@@ -106,7 +102,7 @@ class Persona:
         self.up = pg.image.load(constancy.mg_up).convert_alpha()
         self.down = pg.image.load(constancy.mg_down).convert_alpha()
 
-        #Position of the persona in boxes and pixels
+        # Position of the persona in boxes and pixels
         self.case_x = Level.initial_x
         self.case_y = Level.initial_y
         self.x = self.case_x * constancy.sprite_size
@@ -116,7 +112,6 @@ class Persona:
         self.direction = self.up
         # level in which the persona is located
         self.level = level
-
 
     def move(self, direction):
         """Method for moving the persona"""

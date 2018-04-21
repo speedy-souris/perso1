@@ -41,7 +41,7 @@ maintain = 1
 while maintain:
     # home menu display
     menu = pg.image.load(constancy.menu_picture).convert()
-    window.blit(menu,(0,0))
+    window.blit(menu, (0, 0))
 
     # Refresh the window
     pg.display.flip()
@@ -55,7 +55,8 @@ while maintain:
     """
     while maintain_home:
         for event in pg.event.get():
-            if event.type == QUIT or event.type == KEYDOWN and event.key == K_ESCAPE:
+            if event.type == QUIT or event.type == KEYDOWN and \
+               event.key == K_ESCAPE:
                 maintain_home = 0
                 maintain_game = 0
                 maintain = 0
@@ -90,7 +91,7 @@ while maintain:
 
         # Creating macGyver (persona)
         mg = shape.Persona(constancy.mg_right, constancy.mg_left,
-            constancy.mg_up, constancy.mg_down, level)
+                           constancy.mg_up, constancy.mg_down, level)
 
     """
     GAME LOOP
@@ -119,37 +120,35 @@ while maintain:
                 elif event.key == K_DOWN:
                     mg.move('down')
 
-
-        window.blit(inventory, (0,450))
-        window.blit(background,(0,0))
-        window.blit(backpack, (160,460))
+        window.blit(inventory, (0, 450))
+        window.blit(background, (0, 0))
+        window.blit(backpack, (160, 460))
         level.display(window)
-        window.blit(mg.direction,(mg.x,mg.y))
+        window.blit(mg.direction, (mg.x, mg.y))
         pg.display.flip()
 
         """
         Item Recovery
         """
-        if level.framework[mg.case_y][mg.case_x] == 'p': # phial recovery
-            window.blit(phial, (195,460))
+        if level.framework[mg.case_y][mg.case_x] == 'p':  # phial recovery
+            window.blit(phial, (195, 460))
             functionality.delete(level.framework, 'p')
 
-        if level.framework[mg.case_y][mg.case_x] == 'l': # needle recovery
-            window.blit(needle, (230,460))
+        if level.framework[mg.case_y][mg.case_x] == 'l':  # needle recovery
+            window.blit(needle, (230, 460))
             functionality.delete(level.framework, 'l')
 
-
-        if level.framework[mg.case_y][mg.case_x] == 'r': # rod recovery
-            window.blit(rod, (265,460))
+        if level.framework[mg.case_y][mg.case_x] == 'r':  # rod recovery
+            window.blit(rod, (265, 460))
             functionality.delete(level.framework, 'r')
 
         if level.framework[mg.case_y][mg.case_x] == "o":
             if shape.Level.backpack == 3:
-                window.blit(empty, (195,460))
-                window.blit(empty, (230,460))
-                window.blit(empty, (265,460))
+                window.blit(empty, (195, 460))
+                window.blit(empty, (230, 460))
+                window.blit(empty, (265, 460))
                 shape.Level.backpack = 0
                 maintain_game = 0
             else:
                 shape.Level.backpack < 3
-                window.blit(death, (0,450))
+                window.blit(death, (0, 450))

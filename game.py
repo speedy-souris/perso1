@@ -18,7 +18,6 @@ from pygame.locals import *
 # local libraries
 from gamePack import game_constant as constancy
 from gamePack import game_class as shape
-from gamePack import game_function as functionality
 
 """ window management
     Adaptation of the window according to the size of sprites
@@ -105,6 +104,10 @@ while maintain:
             # ESC key to return to the menu
             elif event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
+                    window.blit(empty, (195, 460))
+                    window.blit(empty, (230, 460))
+                    window.blit(empty, (265, 460))
+                    shape.Level.backpack = 0
                     maintain_game = 0
                 # q key to quit the game after the death of persona 'MacGyver'
                 elif event.key == K_q:
@@ -132,15 +135,15 @@ while maintain:
         """
         if level.framework[mg.case_y][mg.case_x] == 'p':  # phial recovery
             window.blit(phial, (195, 460))
-            functionality.delete(level.framework, 'p')
+            level.delete_item(mg.case_y, mg.case_x)
 
         if level.framework[mg.case_y][mg.case_x] == 'l':  # needle recovery
             window.blit(needle, (230, 460))
-            functionality.delete(level.framework, 'l')
+            level.delete_item(mg.case_y, mg.case_x)
 
         if level.framework[mg.case_y][mg.case_x] == 'r':  # rod recovery
             window.blit(rod, (265, 460))
-            functionality.delete(level.framework, 'r')
+            level.delete_item(mg.case_y, mg.case_x)
 
         if level.framework[mg.case_y][mg.case_x] == "o":
             if shape.Level.backpack == 3:

@@ -1,12 +1,13 @@
 """
 MacGyver's Labyrinth Game Class
 """
+# internal librairies
+from random import *
 # external libraries
 import pygame as pg
 from pygame.locals import *
 # local libraries
 from gamePack import game_constant as constancy
-from gamePack import game_function as functionality
 
 
 class Level:
@@ -29,11 +30,9 @@ class Level:
         # file opening
         with open(self.level_file, "r") as level_file:
             framework_level = []
-            item_level = []
             # course of each line of the file
             for line in level_file:
                 line_level = []
-                line_item = []
                 # We go through the sprites (letters) contained in the file
                 for sprite in line:
                     # We ignore the end of line "\ n"
@@ -45,9 +44,9 @@ class Level:
 
             # We safeguard this framework
             self.framework = framework_level
-            functionality.random_position(self.framework, 'p')
-            functionality.random_position(self.framework, 'l')
-            functionality.random_position(self.framework, 'r')
+            self.random_position_item('p')
+            self.random_position_item('l')
+            self.random_position_item('r')
 
     def display(self, window):
         """Method for displaying the level according to
@@ -91,6 +90,32 @@ class Level:
                     window.blit(rod, (x, y))
                 number_case += 1
             number_line += 1
+
+    """
+    Item Display Method
+    """
+
+    def random_position_item(self, character):
+        """random positioning method for item"""
+
+        x = randint(0, 14)
+        y = randint(0, 14)
+        while(self.framework[x][y] != '_'):
+            x = randint(0, 14)
+            y = randint(0, 14)
+
+        self.framework[x][y] = character
+        return self.framework
+
+    """
+    Item removal method
+    """
+
+    def delete_item(self, x, y):
+        """method of removing item"""
+        self.framework[x][y] = '_'
+        Level.backpack += 1  # Add item found
+        return self.framework
 
 
 class Persona:
